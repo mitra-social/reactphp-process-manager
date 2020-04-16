@@ -13,7 +13,7 @@ $loop = ReactEventLoopFactory::create();
 $pm = new ReactProcessManager(2, $loop);
 
 $loop->addPeriodicTimer(2.0, function () use ($pm) {
-    echo sprintf('hello from process with pid %d! (parent: %d)' . PHP_EOL, $pm->getCurrentProcess()->getPid());
+    echo sprintf('hello from process with pid %d!' . PHP_EOL, $pm->getCurrentProcess()->getPid());
 });
 
 $pm->run();

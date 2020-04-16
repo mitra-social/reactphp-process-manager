@@ -54,8 +54,12 @@ final class ReactProcessManager
      * @param callable|null $onFork Callable to be executed while a fork happens
      * @param callable|null $beforeFork Callable to be executed right before a fork happens
      */
-    public function __construct(int $maxProcesses, LoopInterface $loop, ?callable $onFork, ?callable $beforeFork)
-    {
+    public function __construct(
+        int $maxProcesses,
+        LoopInterface $loop,
+        ?callable $onFork = null,
+        ?callable $beforeFork = null
+    ) {
         $this->loop = $loop;
         $this->maxProcesses = $maxProcesses;
         $this->onFork = $onFork;
