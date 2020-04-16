@@ -30,11 +30,11 @@ $pm = new ReactProcessManager(
 );
 
 $pm->setProcessInterruptCallable(function (Process $processData): void {
-    fwrite(STDERR, sprintf(
+    echo printf(
         'Process %d finished running, processed %d requests' . PHP_EOL,
         $processData->getPid(),
         $processData['processedRequests']
-    ));
+    );
 });
 
 $server = new ReactHttpServer(
@@ -46,11 +46,11 @@ $server = new ReactHttpServer(
         }
 
         $processData['processedRequests'] += 1;
-        fwrite(STDERR, sprintf(
+        echo printf(
             'Processed request (pid: %d), processed %d requests' . PHP_EOL,
             $processData->getPid(),
             $processData['processedRequests']
-        ));
+        );
 
         return new ReactResponse(
             200,
@@ -62,6 +62,6 @@ $server = new ReactHttpServer(
 
 $server->listen($socket);
 
-echo 'Server running on ' , $socketAddress , PHP_EOL;
+echo 'Server running on http://' , $socketAddress , PHP_EOL;
 
 $pm->run();
