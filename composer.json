@@ -1,0 +1,19 @@
+{
+  "name": "mitra-social/reactphp-process-manager",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1",
+    "ext-posix": "*",
+    "ext-pcntl": "*",
+    "react/event-loop": "^1.0"
+  },
+  "require-dev": {
+    "react/socket": "^1.4.0",
+    "react/http": "^0.8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mitra\\React\\ProcessManager\\": "src/"
+    }
+  }
+}
