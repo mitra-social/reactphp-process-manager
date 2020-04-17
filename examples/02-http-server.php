@@ -46,11 +46,7 @@ $server = new ReactHttpServer(
         }
 
         $processData['processedRequests'] += 1;
-        echo printf(
-            'Processed request (pid: %d), processed %d requests' . PHP_EOL,
-            $processData->getPid(),
-            $processData['processedRequests']
-        );
+        echo printf('Request handled by process %d' . PHP_EOL, $processData->getPid());
 
         return new ReactResponse(
             200,
