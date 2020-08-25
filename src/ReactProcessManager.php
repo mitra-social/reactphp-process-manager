@@ -36,7 +36,7 @@ final class ReactProcessManager
     /**
      * @var callable|null
      */
-    private $processInterruptCallable;
+    private $onProcessInterruption;
 
     /**
      * @var callable|null
@@ -84,8 +84,8 @@ final class ReactProcessManager
 
                 // Terminate process if SIGINT received (see line 103)
                 $this->loop->addSignal(SIGINT, function () {
-                    if (null !== $this->processInterruptCallable) {
-                        ($this->processInterruptCallable)($this->processData);
+                    if (null !== $this->onProcessInterruption) {
+                        ($this->onProcessInterruption)($this->processData);
                     }
 
                     $this->loop->stop();
@@ -136,11 +136,11 @@ final class ReactProcessManager
 
     /**
      * Callable to be executed once a process finished running
-     * @param callable|null $processInterruptCallable
+     * @param callable|null $onProcessInterruption
      */
-    public function setProcessInterruptCallable(?callable $processInterruptCallable): void
+    public function onProcessInterruption(?callable $onProcessInterruption): void
     {
-        $this->processInterruptCallable = $processInterruptCallable;
+        $this->onProcessInterruption = $onProcessInterruption;
     }
 
     private function fork(callable $child)

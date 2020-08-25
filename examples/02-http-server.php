@@ -29,7 +29,7 @@ $pm = new ReactProcessManager(
     }
 );
 
-$pm->setProcessInterruptCallable(function (Process $processData): void {
+$pm->onProcessInterruption(function (Process $processData): void {
     echo printf(
         'Process %d finished running, processed %d requests' . PHP_EOL,
         $processData->getPid(),
